@@ -6,9 +6,7 @@ class PruebaTecnica
 {
     static void Main()
     {
-        // Datos de entrada
-        //int minCalorias = 15;
-        //int pesoMaximo = 10;
+        int opc = 0;
 
         List<Elemento> elementos = new List<Elemento>
         {
@@ -19,22 +17,43 @@ class PruebaTecnica
             new Elemento("E5", 2, 3)
         };
 
-        Console.WriteLine("Ingrese la cantidad de calorias minimas");
-        int minCalorias = int.Parse(Console.ReadLine());
-        Console.WriteLine("Ingrese el peso maximo");
-        int pesoMaximo = int.Parse(Console.ReadLine());
+        do{
+            Console.WriteLine("Ingrese la cantidad de calorias minimas");
+            int minCalorias = int.Parse(Console.ReadLine());
 
-        // Encuentra el conjunto óptimo de elementos
-        List<Elemento> conjuntoOptimo = EncontrarElementoOptimo(elementos, minCalorias, pesoMaximo);
+            Console.WriteLine("Ingrese el peso maximo");
+            int pesoMaximo = int.Parse(Console.ReadLine());
 
-        // Imprime los elementos óptimos
-        Console.WriteLine("Elementos óptimos:");
-        foreach (Elemento elemento in conjuntoOptimo)
-        {
-            Console.WriteLine($"Nombre: {elemento.Nombre}, Peso: {elemento.Peso}, Calorías: {elemento.Calorias}");
-        }
+            // Encuentra el conjunto óptimo de elementos
+            List<Elemento> conjuntoOptimo = EncontrarElementoOptimo(elementos, minCalorias, pesoMaximo);
 
+            // Imprime los elementos óptimos
+            Console.WriteLine("Elementos óptimos:");
+
+            foreach (Elemento elemento in conjuntoOptimo)
+            {
+                Console.WriteLine($"Nombre: {elemento.Nombre}, Peso: {elemento.Peso}, Calorías: {elemento.Calorias}");
+            }
+
+            
+
+            Console.WriteLine("Desea ingresar una nueva cantidad de calorias minimas y peso maximo? 1. para SI 2. para NO");
+            int opcion = int.Parse(Console.ReadLine());
+
+            if ( opcion == 1 )
+            {
+                opc = 1;
+            }
+            else
+            {
+                opc = 2;
+            }
+
+        } while (opc == 1) ;
+
+        Console.WriteLine("Presione enter para salir");
         Console.ReadKey();
+
     }
 
     static List<Elemento> EncontrarElementoOptimo(List<Elemento> elementos, int minCalorias, int pesoMaximo)
